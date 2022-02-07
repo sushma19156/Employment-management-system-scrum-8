@@ -83,7 +83,7 @@ function Login(props) {
         <>
             
 
-                <div className='container bg-primary'>
+                <div className='container'>
                     <div className='row'>
                         <h3 className='text-white mt-3 text-center'> Sign in to your account</h3> 
                         <div className='card col-md-5 m-auto mt-2'>

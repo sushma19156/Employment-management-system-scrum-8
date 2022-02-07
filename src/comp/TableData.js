@@ -11,7 +11,6 @@ function TableData(props) {
 alert("Data will Deleted")
 
     }
-
   return <div className='container'>
     <div className='col-lg-10/ text-center'>
     <div className='row'>

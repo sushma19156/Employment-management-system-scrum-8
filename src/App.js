@@ -6,8 +6,8 @@ import EditEmployee from './comp/EditEmployee'
 function App() {
   return (
     <div className="App">
-     {/* <TableData/> */}
-     <EditEmployee/>
+     <TableData/>
+     {/* <EditEmployee/> */}
     </div>
   );
 }

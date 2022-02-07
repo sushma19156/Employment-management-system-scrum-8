@@ -72,17 +72,29 @@ function Login(props) {
     }
     //for submitting the forgot Password And creatte an account to push the pages
     const handleSubmit1=()=>{
+
         props.history.push()
     }
     const handleSubmit2=()=>{
         props.history.push()
+
+        props.history.push('/register')
+    }
+    //
+    const handleSubmit2=()=>{
+        props.history.push('/forgotpassword')
+
     }
 
     return (
         <>
             
 
+
                 <div className='container bg-primary'>
+
+                <div className='container'>
+
                     <div className='row'>
                         <h3 className='text-white mt-3 text-center'> Sign in to your account</h3> 
                         <div className='card col-md-5 m-auto mt-2'>

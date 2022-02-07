@@ -1,10 +1,11 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
+import EditEmployee from './EditEmployee'
 
 function TableData(props) {
 
     const editData=()=>{
-        props.history.push("/")
+        props.history.push("/EditEmployee")
     }
 
   const deleteData=()=>{
@@ -30,7 +31,7 @@ alert("Data will Deleted")
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
-      <td><button className='btn btn-warning' onClick={editData}>Edit</button></td>
+      <td><EditEmployee/></td>
       <td><button className='btn btn-info' onClick={ deleteData}>Delete</button></td>
     </tr>
     

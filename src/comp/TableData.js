@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table'
 function TableData(props) {
 
     const editData=()=>{
-        props.history.push("/")
+        props.history.push("/login")
     }
 
   const deleteData=()=>{
@@ -12,8 +12,11 @@ alert("Data will Deleted")
 
     }
 
-  return <div className='col-lg-12 p-5  text-center'>
-  <Table  bordered  className='bg-dark p-5 text-white mt-5'>
+  return <div className='container'>
+    <div className='col-lg-10/ text-center'>
+    <div className='row'>
+    <div className='col-lg-1'></div>
+  <Table   className='bg-dark  text-white '>
   <thead>
     <tr>
       <th><b>Name</b></th>
@@ -30,18 +33,21 @@ alert("Data will Deleted")
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
-      <td><button className='btn btn-warning' onClick={editData}>Edit</button></td>
-      <td><button className='btn btn-info' onClick={ deleteData}>Delete</button></td>
+      <td><button className='btn btn-warning text-white'  onClick={editData}>Edit</button></td>
+      <td><button className='btn btn-primary' onClick={ deleteData}>Delete</button></td>
     </tr>
     
    {/* {
         map
     }*/}
   </tbody>
-</Table>
 
+</Table>
+    <div className='col-lg-1'></div>
+  </div>
   </div>
 
+  </div>
 }
 
 export default TableData;

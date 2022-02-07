@@ -62,7 +62,6 @@ const validateName=(name)=>{
         return false
     }
 }
-
 const validateDesignation=(designation)=>{
     const nameFormat= /[a-zA-Z]+/
     if (designation===''){

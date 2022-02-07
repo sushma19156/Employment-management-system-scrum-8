@@ -72,10 +72,11 @@ function Login(props) {
     }
     //for submitting the forgot Password And creatte an account to push the pages
     const handleSubmit1=()=>{
-        props.history.push()
+        props.history.push('/register')
     }
+    //
     const handleSubmit2=()=>{
-        props.history.push()
+        props.history.push('/forgotpassword')
     }
 
     return (

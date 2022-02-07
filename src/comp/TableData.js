@@ -8,7 +8,8 @@ function TableData(props) {
     }
 
   const deleteData=()=>{
-alert("Data will Deleted")
+
+    alert("Data will Deleted")
 
     }
   return <div className='container'>
@@ -28,9 +29,11 @@ alert("Data will Deleted")
   </thead>
   <tbody>
     <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
+      <td>{props.Name}</td>
+      <td>{props.Age}</td>
+      <td>{props.Job}</td>
+      <td>{props.Salary}</td>
+
       <td>@mdo</td>
       <td><button className='btn btn-warning text-white'  onClick={editData}>Edit</button></td>
       <td><button className='btn btn-primary' onClick={ deleteData}>Delete</button></td>

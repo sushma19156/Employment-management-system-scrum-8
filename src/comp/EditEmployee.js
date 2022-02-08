@@ -1,7 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-
 function Edit(props) {
     const [show, setShow] = useState(false);
     const [employeeData, setEmployeeData] = useState([]);

@@ -28,7 +28,7 @@ function Login(props) {
         console.log(validEmail);
         console.log(validPassword);
         if (validEmail && validPassword) {
-            props.history.push()
+            props.history.push('/tabledata')
         }else{
             console.log('error');
         }

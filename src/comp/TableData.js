@@ -12,7 +12,10 @@ function TableData(props) {
 
     alert("Data will Deleted")
 
+
+
     }
+
   return <div className='container'>
     <div className='col-lg-10/ text-center'>
     <div className='row'>
@@ -40,9 +43,15 @@ function TableData(props) {
       <td><button className='btn btn-primary' onClick={ deleteData}>Delete</button></td>
     </tr>
     
-   {/* {
-        map
-    }*/}
+   {/* {employeedata.map((data,index)=>{
+     return <tr key={index}>
+       <td>{employeedata.fullName}</td>
+       <td>{employeedata.desi}</td>
+       <td>{employeedata.fullname}</td>
+       <td>{employeedata.fullname}</td>
+
+       </tr>
+   })} */}
   </tbody>
 
 </Table>

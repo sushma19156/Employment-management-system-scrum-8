@@ -1,204 +1,69 @@
-import React, { useState,useEffect } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import React, { useContext, useState } from 'react';
+import { Button, Modal, ModalBody, ModalTitle } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
+import ContextData from '../context/context';
 
-function Edit(props) {
-    const [show, setShow] = useState(false);
-    const [employeeData, setEmployeeData] = useState([]);
-    const [employeeDetails, setEmployeeDetails] = useState({
-        fullName:'',
-        designation:'',
-        salary:'',
-        age:''
-    });
-    const [nameErrorMessage, setNameErrorMessage] = useState('');
-    const [designationErrorMessage,setdesignationErrorMessage] = useState('');
-    const [ageErrorMessage, setAgeErrorMessage] = useState('');
-    const [salaryErrorMessage, setSalaryErrorMessage] = useState('');
+function EditEmployee(props) {
+ const contextValue=useContext(ContextData)
+ // const data={...contextValue.selectedEmployee}
+ console.log(contextValue);
+//console.log(data.fullName);
 
-    const [nameError, setnameError] = useState(false);
-    const [designationError, setdesignationError] = useState(false);
-    const [salaryError, setSalaryError] = useState(false);
-    const [ageError, setAgeError] = useState(false);
+const[selectedEmployee1,setSelectedEmployee1]=useState({
+  fullName:'',
+  designation:'',
+  salary:'',
+  age:''
+})
 
-    const handleSubmit=(event)=>{
-        event.preventDefault()
-        const isNameValid=validateName(employeeDetails.fullName)
-        const isDesignationValid=validateDesignation(employeeDetails.designation)
-        const isSalaryValid=validateSalary(employeeDetails.salary)
-        const isAgeValid=validateAge(employeeDetails.age)
 
-        if (isNameValid && isDesignationValid && isSalaryValid && isAgeValid){
-            setEmployeeData([
-                ...employeeData,
-                employeeDetails
-            ])
-            console.log(employeeData);
-            setEmployeeDetails({
-                fullName:'',
-                designation:'',
-                salary:'',
-                age:''
-            })
-            alert('Details Added Successfully')
-        }else {
-            console.error('invalid data');
-        }
-    }
-// ===========================================================================
-const validateName=(name)=>{
-    const nameFormat= /[a-zA-Z]+/
-    if (name===''){
-        setnameError(true)
-        setNameErrorMessage('Please enter username')
-        return false
-    }else if (nameFormat.test(name)){
-        setnameError(false)
-        setNameErrorMessage(' ')
-        return true
-    } else{
-        setnameError(true)
-        setNameErrorMessage('Please enter valid username')
-        return false
-    }
+ const eventHandler=(e)=>{
+//const dataCopy={...data}
+//dataCopy[contextValue.index][e.target.name]=e.target.value
+
+//const selectedEmployee1Copy={...selectedEmployee1}
+//console.log(selectedEmployee1Copy.fullName);
+// selectedEmployeeCopy[contextValue.index][e.target.name]=e.target.value
+//console.log(selectedEmployee1Copy);
+const employeeCopy={...selectedEmployee1}
+employeeCopy[e.target.name]=e.target.value
+setSelectedEmployee1(employeeCopy)
+ }
+
+ const closeModal=()=>{
+props.history.push('/tableshow')
+ }
+
+const saveChanges=()=>{
+ const storeDataCopy=[...contextValue.storeData]
+  storeDataCopy.splice(contextValue.index,1,selectedEmployee1)
+  contextValue.setStoreData(storeDataCopy)
+  props.history.push('/tableshow')
+}
+  return <div>
+<Modal show={contextValue.showEditModal}>
+<Modal.Header closeButton>
+    <Modal.Title>Edit Employee Data</Modal.Title>
+  </Modal.Header>
+
+  <Modal.Body>
+    <label className='form-lable'>FullName</label>
+    <input className='form-control' placeholder='Enter full name' value={selectedEmployee1.fullName} name='fullName' onChange={(e)=>eventHandler(e)}/>
+    <label className='form-lable'>Designation</label>
+    <input className='form-control' name='designation' placeholder='Enter Designation' value={selectedEmployee1.designation} onChange={(e)=>eventHandler(e)}/>
+    <label className='form-lable' >Salary</label>
+    <input className='form-control' name='salary' type='number' placeholder='Enter salaru' value={selectedEmployee1.salary} onChange={(e)=>eventHandler(e)}/>
+    <label className='form-lable'>Age</label>
+    <input className='form-control' name='age' type='number' placeholder='Enter Age' value={selectedEmployee1.age} onChange={(e)=>eventHandler(e)}/>
+
+  </Modal.Body>
+
+  <Modal.Footer>
+    <Button variant="secondary" onClick={()=>{closeModal()}}>Close</Button>
+    <Button variant="primary" onClick={()=>{saveChanges()}}>Save changes</Button>
+  </Modal.Footer>
+</Modal>
+  </div>;
 }
 
-const validateDesignation=(designation)=>{
-    const nameFormat= /[a-zA-Z]+/
-    if (designation===''){
-        setdesignationError(true)
-        setdesignationErrorMessage('Plaese enter designation')
-        return false
-    }else if(nameFormat.test(designation)){
-        setdesignationError(false)
-        setdesignationErrorMessage('')
-        return true
-    }else{
-        setdesignationError(true)
-        setdesignationErrorMessage('Please enter valid designation')
-    }
-}
-
-const validateSalary=(salary)=>{
-    if (salary===''){
-        setSalaryError(true)
-        setSalaryErrorMessage('please enter salary')
-        return false
-    }
-    if (salary>0){
-        setSalaryError(false)
-        setSalaryErrorMessage(' ')
-        return true
-    }else{
-        setSalaryError(true)
-        setSalaryErrorMessage('salary not valid')
-        return false
-    }
-}
-
-const validateAge=(age)=>{
-    if (age===''){
-        setAgeError(true)
-        setAgeErrorMessage('Please Enter Age')
-        return false
-    }else if (age>18){
-        setAgeError(false)
-        setAgeErrorMessage('')
-        return true
-    }else{
-        setAgeError(true)
-        setAgeErrorMessage('Age not valid')
-        return false
-    }
-}
-// ====================================================
-
-const handleData=(event)=>{
-    setEmployeeDetails({
-        ...employeeDetails,
-        [event.target.name]:event.target.value
-    })
-    console.log(event.target.name);
-}
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    // useEffect(() => {
-    //     setShow(props.showEditForm)
-    // }, [props.showEditForm])
-    
-    // useEffect(() => {
-    //     setEmployeeDetails(props.selectedDetails)
-    // }, [props.selectedDetails])
-
-    // const editForm = async () => {
-    //     let url = ''
-    //     const editUrl = ``
-    //     try {
-    //         if (props.modalType === 'edit') {
-    //             url = editUrl
-    //             const response = await.put(url,Formdetails)
-    //             console.log(response.data);
-    //             if (response.data.error === false) {
-    //                 handleClose()
-    //                 props.fetchFormdetails()
-    //             } else {
-    //                 alert(response.data.message)
-    //             }
-    //         }
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // }
-  return <div> 
-      <>
-        <Button variant="primary" onClick={handleShow}>
-          Edit
-        </Button>
-  
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header className='header'>
-         
-            <Modal.Title>Edit Employee</Modal.Title>
-          </Modal.Header>
-          <Modal.Body><div>
-          <form class="row g-2 form" onSubmit={(event)=>{handleSubmit(event)}}>
-
-            <div class="form-div">
-                <label class="form-label">Full Name</label>
-                <input type="text" class="form-control" placeholder='Enter full name' onChange={(e)=>{handleData(e)}} value={employeeDetails.fullName}   name='fullName' style={{height:'50px'}}/>
-                {nameError ? <div class="error-message" style={{color:'red'}}>{nameErrorMessage}</div> : null}
-            </div>
-
-            <div class="">
-                <label class="form-label">Designation</label>
-                <input type="text" class="form-control" placeholder='Enter designation' onChange={(e)=>{handleData(e)}} value={employeeDetails.designation}  name='designation' style={{height:'50px'}}/>
-                {designationError ? <span class="error-message" style={{color:'red'}}>{designationErrorMessage}</span> : null }
-                
-            </div>
-
-            <div class="">
-                <label class="form-label">Salary</label>
-                <input type="number" class="form-control" placeholder='salary per year' onChange={(e)=>{handleData(e)}} value={employeeDetails.salary}  name='salary' style={{height:'50px'}}/>
-                {salaryError ? <span class="error-message" style={{color:'red'}}>{salaryErrorMessage}</span> : null }
-            </div>
-
-            <div class="">
-                <label class="form-label">Age</label>
-                <input type="number" class="form-control" placeholder='Enter age' onChange={(e)=>{handleData(e)}} value={employeeDetails.age} name='age' style={{height:'50px'}}/>
-                {ageError ? <span class="error-message" style={{color:'red'}}>{ageErrorMessage}</span> : null }
-            </div>
-
-            <div class="button">
-                <button class="btn btn-primary" type="submit" style={{marginLeft:'350px'}}>Submit</button>
-            </div>
-        </form>
-           </div>
-        
-        </Modal.Body>
-        </Modal>
-      </>
-
-</div>;
-}
-
-export default Edit;
+export default withRouter(EditEmployee);

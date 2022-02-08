@@ -4,12 +4,15 @@ import TableData from "./comp/TableData";
 import Login from "./comp/Login";
 // import Add from './comp/Add';
 
+
+
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import AddDetails from "./comp/AddDetails";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { useState } from "react";
 import RegistrationForm from "./comp/RegistrationForm";
+import EditEmployee from "./comp/EditEmployee";
 
 function App() {
   const initialstate = {
@@ -48,6 +51,8 @@ function App() {
               <Link to="/login">Login</Link>
               <Link to="/tabledata">EMS Data</Link>
               <Link to="/adddata">Add Employee</Link>
+              <Link to="/editdata">Edit Employee</Link>
+
 
             </div>
           </div>
@@ -57,6 +62,8 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/tabledata" component={TableData}/>
         <Route path="/adddata" component={AddDetails}/>
+        <Route path="/editdata" component={EditEmployee}/>
+
 
       </div>
     </Router>

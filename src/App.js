@@ -1,59 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
-import TableData from './comp/TableData';
-import Login from './comp/Login';
+import logo from "./logo.svg";
+import "./App.css";
+import TableData from "./comp/TableData";
+import Login from "./comp/Login";
 // import Add from './comp/Add';
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import AddDetails from './comp/AddDetails';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import AddDetails from "./comp/AddDetails";
 
-
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
-
-
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { useState } from "react";
+import RegistrationForm from "./comp/RegistrationForm";
 
 function App() {
+  const initialstate = {
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+  };
+  const [data, setData] = useState(initialstate);
+  const [errors, setErrors] = useState({});
+
   return (
     <Router>
       <div className="App bg-primary">
         <nav className="navbar navbar-expand-lg navbar-light bg-dark m-2">
+          <a className="navbar-brand text-white p-1 m-1" href="#">
+            EMS
+          </a>
+          <a className="navbar-brand text-white p-1 m-1" href="">
+            EMS
+          </a>
 
-          <a className="navbar-brand text-white p-1 m-1" href="#">EMS</a>
-          <a className="navbar-brand text-white p-1 m-1" href="">EMS</a>
-
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          </button>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          ></button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-
-            <a className="nav-item nav-link" ><Link to="/register" className='text-white text-decoration-none'> Register</Link></a>
-              <a className="nav-item nav-link "><Link to="/login" className='text-white text-decoration-none'> Login</Link></a>
-              <a className="nav-item nav-link" ><Link to="/adddetails" className='text-white text-decoration-none'> AddEmployee</Link></a>
-              <a className="nav-item nav-link"><Link to="/tabledata" className='text-white text-decoration-none'> Employee Data</Link></a>
-              <a className="nav-item nav-link " href="#"> <Link to="/login" className='text-white text-decoration-none'> Login</Link></a>
-             
-              <a className="nav-item nav-link" href="#"> <Link to="/register" className='text-white text-decoration-none'> Register</Link></a>
-              <a className="nav-item nav-link" href="#"> <Link to="/adddetails" className='text-white text-decoration-none'> AddEmployee</Link></a>
-              <a className="nav-item nav-link" href="#"> <Link to="/tabledata" className='text-white text-decoration-none'> Employee Data</Link></
-            <a className="nav-item nav-link" > <Link to="/register" className='text-white text-decoration-none'> Register</Link></a>
-              <a className="nav-item nav-link "> <Link to="/login" className='text-white text-decoration-none'> Login</Link></a>
-              <a className="nav-item nav-link" > <Link to="/adddetails" className='text-white text-decoration-none'> AddEmployee</Link></a>
-              <a className="nav-item nav-link"> <Link to="/tabledata" className='text-white text-decoration-none'> Employee Data</Link></a>
-
-            
+              <Link to="/registeration">Register</Link>
             </div>
           </div>
         </nav>
 
-        <Route path="/register" component={Login} />
-        <Route path="/login" component={Login} />
-
-        <Route path="/adddetails" component={Login} />
-        <Route path='/adddetails' component={AddDetails} />
-        {/* <Route path='/add' component={Add} /> */}
-        <Route path='/tabledata' component={TableData} />
+        <Route path="/registeration" component={RegistrationForm} />
       </div>
     </Router>
   );

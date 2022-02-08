@@ -10,10 +10,7 @@ function Edit(props) {
         salary:'',
         age:''
     });
-
-
-
-    
+////---------------
     const [nameErrorMessage, setNameErrorMessage] = useState('');
     const [designationErrorMessage,setdesignationErrorMessage] = useState('');
     const [ageErrorMessage, setAgeErrorMessage] = useState('');

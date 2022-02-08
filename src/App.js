@@ -47,6 +47,8 @@ function App() {
               <Link to="/registeration">Register</Link>
               <Link to="/login">Login</Link>
               <Link to="/tabledata">EMS Data</Link>
+              <Link to="/adddata">Add Employee</Link>
+
             </div>
           </div>
         </nav>
@@ -54,6 +56,8 @@ function App() {
         <Route path="/registeration" component={RegistrationForm} />
         <Route path="/login" component={Login} />
         <Route path="/tabledata" component={TableData}/>
+        <Route path="/adddata" component={AddDetails}/>
+
       </div>
     </Router>
   );

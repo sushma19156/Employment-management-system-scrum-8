@@ -1,5 +1,5 @@
 
-
+//registeration
 function RegistrationForm(props) {
  
   const { data, setData, errors, setErrors }=props;

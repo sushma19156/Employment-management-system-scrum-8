@@ -1,26 +1,36 @@
-import { tab } from '@testing-library/user-event/dist/tab';
-import React from 'react';
-import Table from 'react-bootstrap/Table'
+import React, { useContext, useState } from 'react';
+import { Button, Modal, ModalBody, Table } from 'react-bootstrap';
+import { withRouter } from 'react-router-dom';
+import ContextData from '../context/context';
 
 function TableData(props) {
-
-    const editData=()=>{
-        props.history.push()
+  const contextValue = useContext(ContextData)
+  console.log(contextValue.storeData);
+  console.log(contextValue);
+  
+    const editData=(daata, index)=>{
+      console.log(contextValue.showEditModal);
+    contextValue.setEditModal(true)
+   // setShow(true)
+    
+    console.log('its commign');
+    // const array=[...contextValue.storeData]
+    contextValue.setSelectedEmployee(data);
+    // array.splice()
+    contextValue.setIndex(index)
+        props.history.push("/EditEmployee")
     }
 
   const deleteData=()=>{
-
-    alert("Data will Deleted")
-
-
+    const array = [...contextValue.storeData]
+    array.splice(index, 1)
+    contextValue.setStoreData(array)
+alert("Data will Deleted")
 
     }
 
-  return <div className='container'>
-    <div className='col-lg-10/ text-center'>
-    <div className='row'>
-    <div className='col-lg-1'></div>
-  <Table   className='bg-dark  text-white '>
+  return <div className='col-lg-12 p-5  text-center'>
+  <Table  bordered  className='bg-dark p-5 text-white mt-5'>
   <thead>
     <tr>
       <th><b>Name</b></th>
@@ -32,34 +42,24 @@ function TableData(props) {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>{props.Name}</td>
-      <td>{props.Age}</td>
-      <td>{props.Job}</td>
-      <td>{props.Salary}</td>
-
-      <td>@mdo</td>
-      <td><button className='btn btn-warning text-white'  onClick={editData}>Edit</button></td>
-      <td><button className='btn btn-primary' onClick={ deleteData}>Delete</button></td>
-    </tr>
-    
-   {/* {employeedata.map((data,index)=>{
-     return <tr key={index}>
-       <td>{employeedata.fullName}</td>
-       <td>{employeedata.desi}</td>
-       <td>{employeedata.fullname}</td>
-       <td>{employeedata.fullname}</td>
-
-       </tr>
-   })} */}
+  {contextValue.storeData && contextValue.storeData.map((data, index) => {
+    return (
+      <tr key={index}>
+        <td>{data.fullName}</td>
+        <td>{data.designation}</td>
+        <td>{data.salary}</td>
+        <td>{data.age}</td>
+        <td><button onClick={() => { editData(data, index) }}>Edit</button></td>
+        <td><button onClick={(index) => { deleteData(index) }}>Delete</button></td>
+      </tr>
+    )
+  })}
   </tbody>
-
 </Table>
-    <div className='col-lg-1'></div>
-  </div>
-  </div>
 
   </div>
+
 }
 
 export default TableData;
+

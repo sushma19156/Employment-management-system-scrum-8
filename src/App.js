@@ -46,12 +46,14 @@ function App() {
             <div className="navbar-nav">
               <Link to="/registeration">Register</Link>
               <Link to="/login">Login</Link>
+              <Link to="/tabledata">EMS Data</Link>
             </div>
           </div>
         </nav>
 
         <Route path="/registeration" component={RegistrationForm} />
         <Route path="/login" component={Login} />
+        <Route path="/tabledata" component={TableData}/>
       </div>
     </Router>
   );

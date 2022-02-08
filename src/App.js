@@ -45,11 +45,13 @@ function App() {
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
               <Link to="/registeration">Register</Link>
+              <Link to="/login">Login</Link>
             </div>
           </div>
         </nav>
 
         <Route path="/registeration" component={RegistrationForm} />
+        <Route path="/login" component={Login} />
       </div>
     </Router>
   );
